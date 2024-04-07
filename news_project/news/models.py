@@ -3,11 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 
 
-# Create your models here.
-
-
 class Author(models.Model):
-    full_name = models.CharField(max_length=255)
     authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
     ratingAuthor = models.SmallIntegerField(default=0)
 
@@ -53,7 +49,7 @@ class Post(models.Model):
         self.save()
 
     def preview(self):
-        return self.text[0:128] + '...'
+        return self.text[0:124] + '...'
 
 
 class PostCategory(models.Model):
@@ -68,5 +64,10 @@ class Comment(models.Model):
     creation_time_in = models.DateTimeField(auto_now_add=True)
     rating = models.SmallIntegerField(default=0)
 
+    def like(self):
+        self.rating += 1
+        self.save()
 
-
+    def dislike(self):
+        self.rating -= 1
+        self.save()
