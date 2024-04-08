@@ -4,20 +4,41 @@ from django.db.models import Sum
 
 
 class Author(models.Model):
-    authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
-    ratingAuthor = models.SmallIntegerField(default=0)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
 
     def update_rating(self):
-        postRat = self.post_set.aggregate(postRating=Sum('rating'))
-        pRat = 0
-        pRat += postRat.get('postRating')
+        posts_rating = 0
+        comments_rating = 0
+        posts_comments_rating = 0
+        posts = Post.objects.filter(author=self)
+        for p in posts:
+            posts_rating += p.rating
+        comments = Comment.objects.filter(user=self.user)
+        for c in comments:
+            comments_rating += c.rating
+        posts_comments = Comment.objects.filter(post__author=self)
+        for pc in posts_comments:
+            posts_comments_rating += pc.rating
 
-        commentRat = self.authorUser.comment_set.aggregate(commentRating=Sum('rating'))
-        cRat = 0
-        cRat += commentRat.get('commentRating')
+        print(posts_rating)
+        print('--------------')
+        print(comments_rating)
+        print('--------------')
+        print(posts_comments_rating)
 
-        self.ratingAuthor = pRat * 3 + cRat
-        self.save()
+        self.rating = posts_rating * 3 + comments_rating + posts_comments_rating
+
+        # postRat = self.post_set.aggregate(postRating=Sum('rating'))
+        # pRat = 0
+        # pRat += postRat.get('postRating')
+        #
+        # commentRat = self.authorUser.comment_set.aggregate(commentRating=Sum('rating'))
+        # cRat = 0
+        # cRat += commentRat.get('commentRating')
+        #
+        # self.ratingAuthor = pRat * 3 + cRat
+        # self.save()
 
 
 class Category(models.Model):
@@ -31,14 +52,14 @@ class Post(models.Model):
     NEWS = 'NW'
     CATEGORY_PAPER = (
         (ARTICLE, 'Статья'),
-        (NEWS, 'Новость'))
+        (NEWS, 'Новости'))
 
     categoryType = models.CharField(max_length=2, choices=CATEGORY_PAPER, default=ARTICLE)
     creation_time_in = models.DateTimeField(auto_now_add=True)
-    postCategory = models.ManyToManyField(Category, through='PostCategory')
+    category = models.ManyToManyField(Category, through='PostCategory')
     title = models.CharField(max_length=128)
     text = models.TextField()
-    rating = models.SmallIntegerField(default=0)
+    rating = models.IntegerField(default=0)
 
     def like(self):
         self.rating += 1
@@ -53,16 +74,16 @@ class Post(models.Model):
 
 
 class PostCategory(models.Model):
-    postThrough = models.ForeignKey(Post, on_delete=models.CASCADE)
-    categoryThrough = models.ForeignKey(Category, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):
-    commentPost = models.ForeignKey(Post, on_delete=models.CASCADE)
-    commentUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     creation_time_in = models.DateTimeField(auto_now_add=True)
-    rating = models.SmallIntegerField(default=0)
+    rating = models.IntegerField(default=0)
 
     def like(self):
         self.rating += 1
