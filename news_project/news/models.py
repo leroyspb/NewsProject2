@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
 
 
 class Author(models.Model):
@@ -8,42 +9,22 @@ class Author(models.Model):
     rating = models.IntegerField(default=0)
 
     def update_rating(self):
-        posts_rating = 0
-        comments_rating = 0
-        posts_comments_rating = 0
-        posts = Post.objects.filter(author=self)
-        for p in posts:
-            posts_rating += p.rating
-        comments = Comment.objects.filter(user=self.user)
-        for c in comments:
-            comments_rating += c.rating
-        posts_comments = Comment.objects.filter(post__author=self)
-        for pc in posts_comments:
-            posts_comments_rating += pc.rating
+        posts_rating = Post.objects.filter(author=self).aggregate(pr=Coalesce(Sum("rating"), 0))["pr"]
+        comments_rating = Comment.objects.filter(user=self.user).aggregate(cr=Coalesce(Sum("rating"), 0))["cr"]
+        posts_comments_rating = Comment.objects.filter(post__author=self).aggregate(pcr=Coalesce(Sum("rating"), 0))["pcr"]
 
-        print(posts_rating)
+        print(f'Рейтинг за статьи и новости: {posts_rating}')
         print('--------------')
-        print(comments_rating)
+        print(f'Рейтинг за комментарии: {comments_rating}')
         print('--------------')
-        print(posts_comments_rating)
+        print(f'Рейтинг комментариев к статье и новости: {posts_comments_rating}')
 
         self.rating = posts_rating * 3 + comments_rating + posts_comments_rating
-
-        # postRat = self.post_set.aggregate(postRating=Sum('rating'))
-        # pRat = 0
-        # pRat += postRat.get('postRating')
-        #
-        # commentRat = self.authorUser.comment_set.aggregate(commentRating=Sum('rating'))
-        # cRat = 0
-        # cRat += commentRat.get('commentRating')
-        #
-        # self.ratingAuthor = pRat * 3 + cRat
-        # self.save()
+        self.save()
 
 
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
-
 
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
