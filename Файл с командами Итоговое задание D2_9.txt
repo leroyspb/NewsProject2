@@ -79,7 +79,4 @@ bestPost.rating
 bestPost.title
 bestPost.preview()
 
-
-bestPost.comment_set.all().values("user__username", "creation_time_in", "rating", "text")
-
-
+bestPost.comment_set.all().values("creation_time_in", "user__username", "rating", "text")
