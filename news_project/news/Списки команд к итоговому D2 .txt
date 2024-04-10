@@ -1,4 +1,5 @@
-from news.models import *  
+from news.models import *
+
 u1 = User.objects.create_user(username='Vladimir')
 u2 = User.objects.create_user(username='Semen')   
 a1 = Author.objects.create(user=u1)
@@ -16,17 +17,17 @@ Post.objects.create(author=a2, categoryType='AR', title='«По родствен
 
 
 Post.objects.get(id=1).category.add(Category.objects.get(id=1))
-Post.objects.get(id=1).category.add(Category.objects.get(id=3)) 
-Post.objects.get(id=2).category.add(Category.objects.get(id=2)) 
-Post.objects.get(id=2).category.add(Category.objects.get(id=2)) 
-Post.objects.get(id=2).category.add(Category.objects.get(id=3)) 
+Post.objects.get(id=1).category.add(Category.objects.get(id=3))
+Post.objects.get(id=2).category.add(Category.objects.get(id=2))
+Post.objects.get(id=2).category.add(Category.objects.get(id=2))
+Post.objects.get(id=2).category.add(Category.objects.get(id=3))
 Post.objects.get(id=3).category.add(Category.objects.get(id=1))
-Post.objects.get(id=3).category.add(Category.objects.get(id=3)) 
+Post.objects.get(id=3).category.add(Category.objects.get(id=3))
 
 Comment.objects.create(post=Post.objects.get(id=1), user=Author.objects.get(id=1).user, text='Luckuly day!')
 Comment.objects.create(post=Post.objects.get(id=2), user=Author.objects.get(id=2).user, text='Good step, good morning!')  
 Comment.objects.create(post=Post.objects.get(id=1), user=Author.objects.get(id=2).user, text='The best of the best article for friday!')  
-Comment.objects.create(post=Post.objects.get(id=3), user=Author.objects.get(id=1).user, text='Bad news 100%')
+Comment.objects.create(post=Post.objects.get(id=3), user=Author.objects.get(id=1).user, text='Это второй комментарий к этой статье)')
 Comment.objects.create(post=Post.objects.get(id=4), user=Author.objects.get(id=1).user, text='Отлично, всегда мечтал!')
 
 Comment.objects.get(id=1).like()
@@ -45,7 +46,8 @@ Comment.objects.get(id=3).dislike()
 Comment.objects.get(id=4).like()
 Comment.objects.get(id=4).like()
 Comment.objects.get(id=4).like()
-Comment.objects.get(id=4).dislike() 
+Comment.objects.get(id=4).dislike()
+Comment.objects.get(id=5).like()
 Post.objects.get(id=1).like()    
 Post.objects.get(id=1).like() 
 Post.objects.get(id=1).like()
@@ -67,8 +69,17 @@ a1.update_rating()
 a2.update_rating()
 
 bestUser = Author.objects.order_by("-rating").first()
-bestUser.user.username 
-bestUser.rating  
+bestUser.user.username
+bestUser.rating
+
 bestPost = Post.objects.order_by("-rating").first()
+bestPost.creation_time_in.strftime('%d.%m.%Y %H:%M')
+bestPost.author.user
+bestPost.rating
+bestPost.title
 bestPost.preview()
+
+
+bestPost.comment_set.all().values('user__username', 'creation_time_in', 'rating', 'text')
+
 
