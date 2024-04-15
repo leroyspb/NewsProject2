@@ -73,3 +73,15 @@ class Comment(models.Model):
     def dislike(self):
         self.rating -= 1
         self.save()
+
+
+class New(models.Model):
+    name = models.CharField(
+        max_length=50,
+        unique=True, # названия товаров не должны повторяться
+    )
+    description = models.TextField()
+    # поле категории будет ссылаться на модель категории
+
+    def __str__(self):
+        return f'{self.name.title()}: {self.description[:20]}'
