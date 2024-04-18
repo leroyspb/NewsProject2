@@ -6,7 +6,27 @@
 new
 {% endblock title %}
 
-<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
 {% block content %}
-<h1>{{ new }}</h1>
+    <h1>Важная новость</h1>
+    <hr>
+    {% if new %}
+        <table>
+            <tr>
+                <td> Заголовок </td>
+                <td> Дата публикации </td>
+                <td> Описание </td>
+            </tr>
+
+            <tr>
+                <td>{{ new.name|truncatewords:6 }}</td>
+                <td>{{ time_now|date:'d M Y' }}</td>
+                <td>{{ new.description}}</td>
+
+            </tr>
+
+        </table>
+    {% else %}
+        <h2> Новостей нет! </h2>
+        {% endif %}
 {% endblock content %}
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
