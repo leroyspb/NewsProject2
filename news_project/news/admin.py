@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import New
+from .models import *
 
 
-admin.site.register(New)
+admin.site.register(Post)
+admin.site.register(Category)
+admin.site.register(PostCategory)
+admin.site.register(Author)
+admin.site.register(Comment)
