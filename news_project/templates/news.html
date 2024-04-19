@@ -2,6 +2,9 @@
 <!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
 {% extends 'flatpages/default.html' %}
 
+{% load custom_filters %}
+
+{% load custom_tags %}
 <!-- Название у нас будет news -->
 {% block title %}
 posts
@@ -10,7 +13,7 @@ posts
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
     <h1>Все новости</h1>
-
+    <h3>{% current_time '%b %d %Y %A' %}</h3>
     <hr>
     {% if posts %}
 
@@ -23,12 +26,13 @@ posts
             </tr>
             {% for post in posts %}
             <tr>
-                <td>{{ post.title|truncatewords:6 }}</td>
+                <td>{{ post.title|truncatewords:6|censor }}</td>
                 <td>{{ post.creation_time_in|date:'d M Y' }}</td>
-                <td>{{ post.text|truncatewords:20 }}</td>
+                <td>{{ post.text|truncatewords:20|censor }}</td>
 
             </tr>
             {% endfor %}
+        </table>
         </table>
     {% else %}
         <h2> Новостей нет! </h2>
