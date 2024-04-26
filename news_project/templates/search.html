@@ -1,0 +1,40 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+{% load custom_tags %}
+
+<!-- Название у нас будет news -->
+{% block title %}
+<h2> News Search </h2>
+{% endblock title %}
+
+{% block content %}
+<hr>
+{# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
+   <form action="" method="get">
+       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+       {{ filterset.form.as_p }}
+       {# Добавим кнопку отправки данных формы #}
+       <input type="submit" value="Найти" />
+   </form>
+<hr>
+{% if posts %}
+<table width="100%" style="margin-top: 35px">
+            <tr>
+                <td><u> Заголовок </u></td>
+                <td><u> Дата публикации </u></td>
+                <td><u>  Описание </u></td>
+            </tr>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.title|truncatewords:6|censor }}</td>
+                <td>{{ post.creation_time_in|date:'d M Y' }}</td>
+                <td>{{ post.text|truncatewords:20|censor }}</td>
+            {% endfor %}
+            </tr>
+
+        </table>
+{% else %}
+<h3>Выберите параметры для поиска!</h3>
+{% endif %}
+{% endblock content %}
