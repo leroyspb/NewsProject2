@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 # Create your views here.
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .filters import NewsFilter
+from .forms import NewsForm
 from .models import Post
 from datetime import datetime
 
@@ -77,3 +79,27 @@ class SearchNews(ListView):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
         return context
+
+
+class NewsCreate(CreateView):
+    # Указываем нашу разработанную форму
+    form_class = NewsForm
+
+    # модель товаров
+    model = Post
+    # и новый шаблон, в котором используется форма.
+    template_name = 'news_edit.html'
+
+
+# Добавляем представление для изменения товара.
+class NewsUpdate(UpdateView):
+    form_class = NewsForm
+    model = Post
+    template_name = 'news_edit.html'
+
+
+# Представление удаляющее товар.
+class NewsDelete(DeleteView):
+    model = Post
+    template_name = 'news_delete.html'
+    success_url = reverse_lazy('news_list')

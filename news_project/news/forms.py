@@ -12,7 +12,7 @@ class NewsForm(forms.ModelForm):
         fields = [
             'title',
             'text',
-            'creation_time_in',
+            # 'creation_time_in',
             'category',
             'rating',
         ]
