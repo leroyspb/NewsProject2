@@ -5,16 +5,17 @@ from news.models import Post
 
 
 class NewsForm(forms.ModelForm):
-    description = forms.CharField(min_length=20)
+    # description = forms.CharField(min_length=20)
 
     class Meta:
         model = Post
         fields = [
+            'author',
             'title',
             'text',
             # 'creation_time_in',
             'category',
-            'rating',
+            # 'rating',
         ]
 
     def clean(self):
