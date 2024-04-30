@@ -1,9 +1,12 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 # Create your views here.
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .filters import NewsFilter
+from .forms import NewsForm
 from .models import Post
 from datetime import datetime
 
@@ -65,7 +68,6 @@ class SearchNews(ListView):
     context_object_name = 'posts'
     ordering = '-creation_time_in'
 
-
     def get_queryset(self):
         queryset = super().get_queryset()
         self.filterset = NewsFilter(self.request.GET, queryset)
@@ -77,3 +79,62 @@ class SearchNews(ListView):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
         return context
+
+
+class PostCreate(CreateView):
+    # Указываем нашу разработанную форму
+    form_class = NewsForm
+
+    # модель товаров
+    model = Post
+    # и новый шаблон, в котором используется форма.
+    template_name = 'news/post_create.html'
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        if self.request.path == '/news_create/':
+            post.post.news = 'NW'
+        return super().form_valid(form)
+
+
+class ArticleCreate(CreateView):
+    form_class = NewsForm
+    model = Post
+    template_name = 'article/articles_create.html'
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        if self.request.path == '/articles_create/':
+            post.post.news = 'AR'
+        return super().form_valid(form)
+
+
+# Добавляем представление для изменения товара.
+class NewsUpdate(UpdateView):
+    form_class = NewsForm
+    model = Post
+    template_name = 'news/post_create.html'
+
+
+class ArticleUpdate(UpdateView):
+    form_class = NewsForm
+    model = Post
+    template_name = 'article/articles_create.html'
+
+
+# Представление удаляющее пост или статью.
+class PostDelete(DeleteView):
+    model = Post
+    template_name = 'news/news_delete.html'
+    success_url = reverse_lazy('post')
+
+    def get_success_url(self):
+        return reverse_lazy('news')
+
+class ArticleDelete(DeleteView):
+    model = Post
+    template_name = 'article/article_delete.html'
+    success_url = reverse_lazy('post')
+
+    def get_success_url(self):
+        return reverse_lazy('news')
