@@ -20,6 +20,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),  # приложение flatpages
+    path("accounts/", include("allauth.urls")),  # Оставили только allauth
+    # path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/', include("accounts.urls")),
     # подключались к главному приложению с префиксом news/.
     path('', include('news.urls')),
 

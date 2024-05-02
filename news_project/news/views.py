@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
@@ -81,7 +81,8 @@ class SearchNews(ListView):
         return context
 
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
+    raise_exception = True
     # Указываем нашу разработанную форму
     form_class = NewsForm
 
@@ -130,6 +131,7 @@ class PostDelete(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('news')
+
 
 class ArticleDelete(DeleteView):
     model = Post
