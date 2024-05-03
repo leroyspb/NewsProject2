@@ -32,22 +32,10 @@ class PostList(ListView):
 # Метод get_context_data позволяет нам изменить набор данных,
     # который будет передан в шаблон.
 
-
-    # def get_context_data(self, **kwargs):
-    #     # С помощью super() мы обращаемся к родительским классам
-    #     # и вызываем у них метод get_context_data с теми же аргументами,
-    #     # что и были переданы нам.
-    #     # В ответе мы должны получить словарь.
-    #     context = super().get_context_data(**kwargs)
-    #     # К словарю добавим текущую дату в ключ 'time_now'.
-    #     context['time_now'] = datetime.utcnow()
-    #     # context['time_creation'] = datetime.astimezone()
-    #     # Добавим ещё одну пустую переменную,
-    #     # чтобы на её примере рассмотреть работу ещё одного фильтра.
-    #     # Добавляем в контекст объект фильтрации.
-    #     context['filterset'] = self.filterset
-    #     context['next_sale'] = "Распродажа в среду!"
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        return context
 
 
 class PostDetail(DetailView):
@@ -56,7 +44,7 @@ class PostDetail(DetailView):
     # Используем другой шаблон — post_detail.html
     template_name = 'post.html'
     # Название объекта, в котором будет выбранный пользователем продукт
-    # context_object_name = 'post'
+    context_object_name = 'post'
 
 
 class SearchNews(ListView):
@@ -81,7 +69,8 @@ class SearchNews(ListView):
         return context
 
 
-class PostCreate(LoginRequiredMixin, CreateView):
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     raise_exception = True
     # Указываем нашу разработанную форму
     form_class = NewsForm
@@ -111,20 +100,23 @@ class ArticleCreate(CreateView):
 
 
 # Добавляем представление для изменения товара.
-class NewsUpdate(UpdateView):
+class NewsUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = NewsForm
     model = Post
     template_name = 'news/post_create.html'
 
 
-class ArticleUpdate(UpdateView):
+class ArticleUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = NewsForm
     model = Post
     template_name = 'article/articles_create.html'
 
 
 # Представление удаляющее пост или статью.
-class PostDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'news/news_delete.html'
     success_url = reverse_lazy('post')
@@ -133,7 +125,8 @@ class PostDelete(DeleteView):
         return reverse_lazy('news')
 
 
-class ArticleDelete(DeleteView):
+class ArticleDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'article/article_delete.html'
     success_url = reverse_lazy('post')
