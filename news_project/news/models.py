@@ -29,6 +29,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    subscribers = models.ManyToManyField(User, through='Subscription')
 
     def __str__(self):
         return f'{self.name}'
@@ -53,6 +54,7 @@ class Post(models.Model):
     title = models.CharField(max_length=128)
     text = models.TextField()
     rating = models.IntegerField(default=0)
+    related_name = 'posts',
 
     def like(self):
         self.rating += 1
@@ -97,3 +99,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment_post.author.user.username + '---' + str(self.id)
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )
+    category = models.ForeignKey(
+        to='Category',
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )

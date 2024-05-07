@@ -1,13 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.db.models import OuterRef, Exists
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .filters import NewsFilter
 from .forms import NewsForm
-from .models import Post
+from .models import Post, Subscription, Category
 from datetime import datetime
 
 
@@ -133,3 +136,34 @@ class ArticleDelete(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('news')
+
+
+@login_required
+@csrf_protect
+def subscriptions(request):
+    if request.method == 'POST':
+        category_id = request.POST.get('category_id')
+        category = Category.objects.get(id=category_id)
+        action = request.POST.get('action')
+
+        if action == 'subscribe':
+            Subscription.objects.create(user=request.user, category=category)
+        elif action == 'unsubscribe':
+            Subscription.objects.filter(
+                user=request.user,
+                category=category,
+            ).delete()
+
+    categories_with_subscriptions = Category.objects.annotate(
+        user_subscribed=Exists(
+            Subscription.objects.filter(
+                user=request.user,
+                category=OuterRef('pk'),
+            )
+        )
+    ).order_by('name')
+    return render(
+        request,
+        'subscriptions.html',
+        {'categories': categories_with_subscriptions},
+    )
