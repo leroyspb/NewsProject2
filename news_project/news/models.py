@@ -29,7 +29,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    subscribers = models.ManyToManyField(User, through='Subscription')
+    # subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
         return f'{self.name}'
@@ -72,9 +72,11 @@ class Post(models.Model):
         return f'{self.title}'
 
     def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу
-        return reverse('post', args=[str(self.id)])
+       return reverse('post', kwargs={'pk': self.pk})
 
-        # return reverse('post', kwargs={'pk': self.pk})
+       # return f'/news/{self.id}'
+
+
 
 
 class PostCategory(models.Model):
