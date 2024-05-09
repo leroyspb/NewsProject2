@@ -29,7 +29,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    subscribers = models.ManyToManyField(User, blank=True, null=True, related_name='categories')
+    subscribers = models.ManyToManyField(User, related_name='categories', through='Subscription')
 
     def __str__(self):
         return f'{self.name}'
@@ -75,6 +75,8 @@ class Post(models.Model):
        return reverse('post', kwargs={'pk': self.pk})
 
        # return f'/news/{self.id}'
+
+
 
 
 class PostCategory(models.Model):

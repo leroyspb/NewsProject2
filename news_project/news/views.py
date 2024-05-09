@@ -14,19 +14,12 @@ from .models import Post, Subscription, Category
 from datetime import datetime
 
 
-class PostList(LoginRequiredMixin, ListView):
+class PostList(ListView):
     model = Post
     template_name = 'news.html'
     context_object_name = 'posts'
-    ordering = ['-creation_time_in']
+    ordering = '-creation_time_in'
     paginate_by = 10
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['filter'] = NewsFilter(self.request.GET, queryset=self.get_queryset())
-    #     context['is_not_author'] = not self.request.user.groups.filter(name='authors').exists()
-    #     return context
-
 
     def get_queryset(self):
         # Получаем обычный запрос
@@ -184,19 +177,19 @@ def subscriptions(request):
     ).order_by('name')
     return render(
         request,
-        'subscribe.html',
+        'subscriptions.html',
         {'categories': categories_with_subscriptions},
     )
 
 
-class CategoryListView(Post, ListView):
+class CategoryListView(ListView):
     model = Post
     template_name = 'news/category_list.html'
     context_object_name = 'category_news_list'
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, id=self.kwargs['pk'])
-        queryset = Post.objects.filter(category=self.category).order_by('-creation_time_in')
+        queryset = Post.objects.filter(category=self.category).order_by('-date')
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -204,13 +197,3 @@ class CategoryListView(Post, ListView):
         context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
         context['category'] = self.category
         return context
-
-
-@login_required
-def subscribe(request, pk):
-    user = request.user
-    category = Category.objects.get(id=pk)
-    category.subscribers.add(user)
-
-    message = 'Вы успешно подписались на рассылку новостей категории'
-    return render(request, "news/subscribe.html", {'category': category, 'message': message})

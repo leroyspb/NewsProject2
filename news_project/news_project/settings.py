@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'fpages',
-    'news.apps.NewsConfig',
+    'news',
     'django_filters',
     'allauth',
     'allauth.account',
