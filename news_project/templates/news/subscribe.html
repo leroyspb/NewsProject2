@@ -5,6 +5,7 @@ Subscriptions
 {% endblock title %}
 
 {% block content %}
+    <h1 class="text-center">{{ message }} {{ category }}</h1>
     {% for category in categories  %}
         <p>
             {{ category.name }}
