@@ -18,6 +18,9 @@ logger = logging.getLogger(__name__)
 
 def my_job():
     today = datetime.datetime.now()
+    # yesterday = today - datetime.timedelta(days=1)
+    # last_hour = today - datetime.timedelta(hours=1)
+    # last_minute = today - datetime.timedelta(minutes=1)
     last_week = today - datetime.timedelta(days=7)
     posts = Post.objects.filter(creation_time_in__gte=last_week)
     categories = set(posts.values_list('category__name', flat=True))
@@ -82,3 +85,4 @@ class Command(BaseCommand):
             logger.info("Stopping scheduler...")
             scheduler.shutdown()
             logger.info("Scheduler shut down successfully!")
+
