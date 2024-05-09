@@ -13,9 +13,8 @@ class NewsForm(forms.ModelForm):
             'author',
             'title',
             'text',
-            # 'creation_time_in',
             'category',
-            # 'rating',
+
         ]
 
     def clean(self):

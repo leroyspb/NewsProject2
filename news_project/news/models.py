@@ -50,7 +50,7 @@ class Post(models.Model):
 
     categoryType = models.CharField(max_length=2, choices=CATEGORY_PAPER, default=ARTICLE)
     creation_time_in = models.DateTimeField(auto_now_add=True)
-    category = models.ManyToManyField(Category, through='PostCategory')
+    category = models.ManyToManyField(Category, through='PostCategory', verbose_name='Категория публикации')
     title = models.CharField(max_length=128)
     text = models.TextField()
     rating = models.IntegerField(default=0)
@@ -77,12 +77,12 @@ class Post(models.Model):
        # return f'/news/{self.id}'
 
 
-
-
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.post}'
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

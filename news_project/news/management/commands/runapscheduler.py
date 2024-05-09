@@ -56,8 +56,8 @@ class Command(BaseCommand):
         # добавляем работу задачнику
         scheduler.add_job(
             my_job,
-            trigger=CronTrigger(),
-            # (day_of_week='wed', hour=14, minute=50)
+            trigger=CronTrigger(day_of_week='fri', hour=18, minute=00),
+
             id="my_job",  # The `id` assigned to each job MUST be unique
             max_instances=1,
             replace_existing=True,
