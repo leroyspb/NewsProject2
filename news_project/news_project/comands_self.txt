@@ -1,0 +1,7 @@
+cd .\news_project\
+py manage.py runserver
+
+
+cd .\news_project\
+celery -A news_project worker -l INFO --pool=solo
+

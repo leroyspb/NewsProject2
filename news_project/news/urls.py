@@ -1,4 +1,6 @@
 from django.urls import path
+
+from . import tasks
 # Импортируем созданное нами представление
 from .views import *
 
@@ -22,6 +24,8 @@ urlpatterns = [
    path('articles/<int:pk>/edit', ArticleUpdate.as_view(), name='articles_edit'),
    path('articles/<int:pk>/delete', ArticleDelete.as_view(), name='article_delete'),
    path('subscriptions/', subscriptions, name='subscriptions'),
-   path('categories/<int:pk>', CategoryListView.as_view(), name='category_list')
+   path('categories/<int:pk>', CategoryListView.as_view(), name='category_list'),
+   path('tasks/', tasks.MyTasks.as_view(), name='tasks'),
+   # path('tasks/', tasks.MyTasks.as_view(), name='tasks'),
 
 ]

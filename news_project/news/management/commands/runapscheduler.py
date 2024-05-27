@@ -21,7 +21,7 @@ def my_job():
     # yesterday = today - datetime.timedelta(days=1)
     # last_hour = today - datetime.timedelta(hours=1)
     # last_minute = today - datetime.timedelta(minutes=1)
-    last_week = today - datetime.timedelta(days=7)
+    last_week = today - datetime.timedelta(days=20)
     posts = Post.objects.filter(creation_time_in__gte=last_week)
     categories = set(posts.values_list('category__name', flat=True))
     subscribers = set(Category.objects.filter(name__in=categories).values_list('subscribers__email', flat=True))
@@ -43,6 +43,7 @@ def my_job():
 
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+
 
 @util.close_old_connections
 def delete_old_job_executions(max_age=604_800):

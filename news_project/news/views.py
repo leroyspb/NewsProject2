@@ -11,7 +11,10 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .filters import NewsFilter
 from .forms import NewsForm
 from .models import Post, Subscription, Category
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.http import HttpResponse
+from django.views import View
+from news.tasks import hello, printer
 
 
 class PostList(ListView):
@@ -197,3 +200,14 @@ class CategoryListView(ListView):
         context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
         context['category'] = self.category
         return context
+
+
+class IndexView(View):
+    def get(self, request):
+        printer.apply_async([10], eta=datetime.now() + timedelta(seconds=5))
+        hello.delay()
+        # printer.apply_async([10], countdown = 5)
+        # hello.delay()
+        # printer.delay(10)
+        # hello.delay()
+        return HttpResponse('Hello!')
