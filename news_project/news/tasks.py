@@ -21,6 +21,7 @@ def hello():
     time.sleep(10)
     print("Hello, world!")
 
+
 @shared_task
 def printer(N):
     for i in range(N):
@@ -34,8 +35,8 @@ def printer(N):
 #         print(i+1)
 
 
-@shared_task
-def digit(n, c):
-    for i in range(n):
-        time.sleep(c)
-        print(i + 1)
+# @shared_task
+# def digit(n, c):
+#     for i in range(n):
+#         time.sleep(c)
+#         print(i + 1)
