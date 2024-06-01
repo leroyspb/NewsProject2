@@ -6,4 +6,4 @@ class NewsConfig(AppConfig):
     name = 'news'
 
     def ready(self):
-        import news.signals  # выполнение модуля -> регистрация сигналов
+        pass

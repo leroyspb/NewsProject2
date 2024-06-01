@@ -14,7 +14,6 @@ from .models import Post, Subscription, Category
 from datetime import datetime, timedelta
 from django.http import HttpResponse
 from django.views import View
-from news.tasks import hello, printer
 
 
 class PostList(ListView):
@@ -103,6 +102,7 @@ class PostCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
         post = form.save(commit=False)
         if self.request.path == '/news_create/':
             post.post.news = 'NW'
+
         return super().form_valid(form)
 
 
@@ -202,12 +202,12 @@ class CategoryListView(ListView):
         return context
 
 
-class IndexView(View):
-    def get(self, request):
-        printer.apply_async([10], eta=datetime.now() + timedelta(seconds=5))
-        hello.delay()
-        # printer.apply_async([10], countdown = 5)
-        # hello.delay()
-        # printer.delay(10)
-        # hello.delay()
-        return HttpResponse('Hello!')
+# class IndexView(View):
+#     def get(self, request):
+#         printer.apply_async([10], eta=datetime.now() + timedelta(seconds=5))
+#         hello.delay()
+#         # printer.apply_async([10], countdown = 5)
+#         # hello.delay()
+#         # printer.delay(10)
+#         # hello.delay()
+#         return HttpResponse('Hello!')

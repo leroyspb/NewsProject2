@@ -8,4 +8,11 @@
     <orderEntry type="jdk" jdkName="Python 3.12 (NewsProject2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/news_project/templates" />
+      </list>
+    </option>
+  </component>
 </module>

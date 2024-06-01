@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import tasks
+from .tasks import send_email_new_post, weekly_email_task
 # Импортируем созданное нами представление
 from .views import *
 
@@ -25,7 +26,6 @@ urlpatterns = [
    path('articles/<int:pk>/delete', ArticleDelete.as_view(), name='article_delete'),
    path('subscriptions/', subscriptions, name='subscriptions'),
    path('categories/<int:pk>', CategoryListView.as_view(), name='category_list'),
-   path('tasks/', tasks.MyTasks.as_view(), name='tasks'),
    # path('tasks/', tasks.MyTasks.as_view(), name='tasks'),
-
+   path('', weekly_email_task, name='weekly_email_task'),
 ]

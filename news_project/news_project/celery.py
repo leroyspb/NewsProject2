@@ -9,12 +9,23 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.autodiscover_tasks()
 
+
 app.conf.beat_schedule = {
     'action_every_monday_8am': {
-        'task': 'action',
-        'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
-        'args': (agrs),
+        'task': 'news.tasks.weekly_email_task',
+        'schedule': 3,
+        'args': (20,),
+        # crontab(hour=8, minute=0, day_of_week='monday'),
     },
 }
 
-app.conf.timezone = 'UTC'
+""" Импортируем библиотеку  import os для взаимодействия с операционной системой и саму библиотеку Celery.
+from celery import Celery связываем настройки Django с настройками Celery через переменную окружения.
+os.environ.setdefault создаем экземпляр приложения Celery и устанавливаем для него файл конфигурации.
+Мы также указываем пространство имен, чтобы Celery сам находил все необходимые настройки в общем конфигурационном
+файле settings.py.
+Он их будет искать по шаблону «CELERY_***».
+* Последней строчкой мы указываем Celery автоматически искать задания в файлах tasks.py каждого приложения проекта.
+"""
+
+
