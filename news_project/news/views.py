@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from .tasks import send_email_new_post
 from .filters import NewsFilter
 from .forms import NewsForm
 from .models import Post, Subscription, Category
@@ -80,7 +80,7 @@ class PostCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     # Указываем нашу разработанную форму
     form_class = NewsForm
 
-    # модель товаров
+    # модель
     model = Post
     # и новый шаблон, в котором используется форма.
     template_name = 'news/post_create.html'
@@ -102,7 +102,8 @@ class PostCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
         post = form.save(commit=False)
         if self.request.path == '/news_create/':
             post.post.news = 'NW'
-
+        post.save()
+        send_email_new_post.delay(post.pk)
         return super().form_valid(form)
 
 
@@ -115,6 +116,8 @@ class ArticleCreate(CreateView):
         post = form.save(commit=False)
         if self.request.path == '/articles_create/':
             post.post.news = 'AR'
+        post.save()
+        send_email_new_post.delay(post.pk)
         return super().form_valid(form)
 
 
@@ -201,13 +204,3 @@ class CategoryListView(ListView):
         context['category'] = self.category
         return context
 
-
-# class IndexView(View):
-#     def get(self, request):
-#         printer.apply_async([10], eta=datetime.now() + timedelta(seconds=5))
-#         hello.delay()
-#         # printer.apply_async([10], countdown = 5)
-#         # hello.delay()
-#         # printer.delay(10)
-#         # hello.delay()
-#         return HttpResponse('Hello!')

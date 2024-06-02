@@ -1,21 +1,14 @@
 import datetime
-
 from celery import shared_task
-import time
-
 from django.core.mail import EmailMultiAlternatives
-from django.http import HttpResponse
 from django.template.loader import render_to_string
-from django.views import View
-
 from news_project import settings
-from news_project.celery import app
-from .models import PostCategory, Subscription, Post, Category
+from .models import Post, Category
 
 
-@app.task
-def send_email_new_post(pk): #из celery по аналогии с runapscheduler
-    post = Post.objects.get(pk=pk)
+@shared_task
+def send_email_new_post(pk):
+    post = Post.objects.get(pk=pk)  #созданную новость определяем по pk
     categories = post.category.all()
     title = post.category
     subscribers = []
@@ -23,8 +16,10 @@ def send_email_new_post(pk): #из celery по аналогии с runapschedule
         subscribers_users = category.subscribers.all()
         for sub_user in subscribers_users:
             subscribers.append(sub_user.email)
+
+
     html_content = render_to_string(
-        'post_created_email.html',
+        'news/post_created_email.html',
         {
             'text': f'{post.title}',
             'link': f'{settings.SITE_URL}/news/{pk}'
@@ -32,7 +27,7 @@ def send_email_new_post(pk): #из celery по аналогии с runapschedule
     )
 
     msg = EmailMultiAlternatives(
-        subject=title,
+        subject='Появилась новая новость',
         body='',
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=subscribers,
@@ -42,7 +37,7 @@ def send_email_new_post(pk): #из celery по аналогии с runapschedule
     msg.send()
 
 
-@app.task
+@shared_task
 def weekly_email_task(pk):
     today = datetime.datetime.now()
     last_week = today - datetime.timedelta(days=7)

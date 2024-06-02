@@ -6,7 +6,7 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 
 from news.models import PostCategory, Subscription
-
+from . tasks import send_email_new_post
 
 # def send_notifications(preview, pk, title, subscribers_email):
 #     html_content = render_to_string(
@@ -42,4 +42,8 @@ from news.models import PostCategory, Subscription
 #         send_notifications(instance.preview(), instance.pk, instance.title, subscribers_emails)
 
 
-
+@receiver(m2m_changed, sender=PostCategory)
+def notify_about_new_post(sender, instance, **kwargs):
+    if kwargs['action'] == 'post_add':
+        print('Задание выполяется!!!')
+        send_email_new_post.delay(instance.pk)
