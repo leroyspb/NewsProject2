@@ -1,12 +1,11 @@
 from django.urls import path
-
 from . import tasks
 from .tasks import send_email_new_post, weekly_email_task
 # Импортируем созданное нами представление
 from .views import *
-
+from django.views.decorators.cache import cache_page
 urlpatterns = [
-   # path — означает путь.
+   # Path — означает путь.
    # В данном случае путь ко всем товарам у нас останется пустым,
 
    # Т.к. наше объявленное представление является классом,
@@ -15,8 +14,8 @@ urlpatterns = [
    path('', PostList.as_view()),
    # pk — это первичный ключ товара, который будет выводиться у нас в шаблон
    # int — указывает на то, что принимаются только целочисленные значения
-   path('news/', PostList.as_view(), name='news'),
-   path('news/<int:pk>/', PostDetail.as_view(), name='post'),
+   path('news/', cache_page(60*1)(PostList.as_view()), name='news'),
+   path('news/<int:pk>/', cache_page(300*1)(PostDetail.as_view()), name='post'),
    path('news/search/', SearchNews.as_view(), name='search'),
    path('news/create/', PostCreate.as_view(), name='post_create'),
    path('articles/create/', ArticleCreate.as_view(), name='articles_create'),

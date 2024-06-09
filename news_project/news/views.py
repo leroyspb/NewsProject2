@@ -4,7 +4,7 @@ from django.db.models import OuterRef, Exists
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_protect
-
+from django.core.cache import cache  # импортируем наш кэш
 # Create your views here.
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .tasks import send_email_new_post
@@ -24,8 +24,7 @@ class PostList(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        # Получаем обычный запрос
-        queryset = super().get_queryset()
+        queryset = super().get_queryset()  # Получаем обычный запрос
         # Используем наш класс фильтрации.
         # self.request.GET содержит объект QueryDict, который мы рассматривали
         # в этом юните ранее.
@@ -50,6 +49,17 @@ class PostDetail(DetailView):
     template_name = 'post.html'
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'post'
+    queryset = Post.objects.all()
+
+
+def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта, как ни странно
+    obj = cache.get(f'news-{self.kwargs["pk"]}', None) # кэш очень похож на словарь, и метод get действует так же.
+    # Он забирает значение по ключу, если его нет, то забирает None
+    # если объекта нет в кэше, то получаем его и записываем в кэш
+    if not obj:
+        obj = super().get_object(queryset=self.queryset)
+        cache.set(f'news-{self.kwargs["pk"]}', obj)
+        return obj
 
 
 class SearchNews(ListView):

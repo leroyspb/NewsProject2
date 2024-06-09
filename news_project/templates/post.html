@@ -1,19 +1,22 @@
 {% extends 'flatpages/default.html' %}
-
+{% load cache %} <!-- Загружаем кэширование -->
 {% block content %}
 {% if post %}
+{% cache 300 sidebar %} <!-- Кэшируем отдельный блок на 300 секунд -->
 <table width="100%" style="margin-top: 35px">
     <tr>
         <td><u>Заголовок</u></td>
         <td><u>Дата публикации</u></td>
         <td><u>Содержание</u></td>
     </tr>
+    {% endcache %}
     <tr>
         <td>{{ post.title }}</td>
         <td>{{ post.creation_time_in|date:'d M Y' }}</td>
         <td>{{ post.text}}</td>
     </tr>
 </table>
+
 {% else %}
 <h3>Публикаций нет!</h3>
 {% endif %}

@@ -12,8 +12,10 @@ posts
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
+{% load cache %} <!-- Загружаем кэширование -->
+{% cache 60 all_news %}
     <h1>Все новости</h1>
-
+{% endcache %}
 <!--   {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}-->
 <!--   <form action="" method="get">-->
 <!--       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}-->
@@ -30,21 +32,25 @@ posts
     {% if posts %}
 
 <h2> Количество постов {{ posts|length }}</h2>
+{% cache 60 sidebar_news %} <!-- Кэшируем отдельный блок на 60 секунд -->
         <table width="100%" style="margin-top: 35px">
             <tr>
                 <td><u> Заголовок </u></td>
                 <td><u> Дата публикации </u></td>
                 <td><u>  Описание </u></td>
             </tr>
+                {% endcache %}
             {% for post in posts %}
             <tr>
                 <td>{{ post.title|truncatewords:6|censor }}</td>
                 <td>{{ post.creation_time_in|date:'d M Y' }}</td>
                 <td>{{ post.text|truncatewords:20|censor }}</td>
+
                 {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}
                 {% if perms.news.change_post %}
                 {% if post.categoryType == 'NW' %}
                     <td><a href="{% url 'news_edit' post.id %}">Обновить</a></td>
+
                 {% else %}
                     <td><a href="{% url 'articles_edit' post.id %}">Обновить</a></td>
 
@@ -74,6 +80,7 @@ posts
     {% else %}
         <h2> Новостей нет! </h2>
     {% endif %}
+
  {# Добавляем пагинацию на страницу #}
 
    {# Информация о предыдущих страницах #}
@@ -94,7 +101,7 @@ posts
        {% if paginator.num_pages != page_obj.next_page_number %}
            ...
            <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-       {% endif %}
+    {% endif %}
    {% endif %}
 
 {% endblock content %}
