@@ -201,3 +201,30 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'), # Указываем, куда будем сохранять кэшируемые файлы! Не забываем создать папку cache_files внутри папки с manage.py!
     }
 }
+
+LOGGING = {
+    'version': 1,  # на текущий момент это единственно допустимое значение
+    'disable_existing_loggers': False,  # контролирует работу (стандартной) схемы логирования Django
+    'formatters': {
+        'format_debug': {
+            'format': '{asctime} {levelname} {message}',
+            'style': '{',
+        },
+
+        'format_warning_mail': {
+            'format': '{asctime} {levelname} {message} {pathname} ',
+            'style': '{',
+        },
+
+        'format_error_critical': {
+            'format': '{asctime} {levelname} {message} {pathname} {exc_info}',
+            'style': '{',
+        },
+
+        'format_general_security_info': {
+            'format': '{asctime} {levelname} {message} {module} ',
+            'style': '{',
+        },
+
+    },
+}

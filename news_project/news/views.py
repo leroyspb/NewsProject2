@@ -14,6 +14,15 @@ from .models import Post, Subscription, Category
 from datetime import datetime, timedelta
 from django.http import HttpResponse
 from django.views import View
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+def index(request):  # при переходе по определённому адресу в urls
+    logger.info('INFO')
+    news = Post.objects.all()
+    return render(request, 'default.html', context={'news': news})
 
 
 class PostList(ListView):
