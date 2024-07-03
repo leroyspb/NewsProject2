@@ -205,26 +205,150 @@ CACHES = {
 LOGGING = {
     'version': 1,  # на текущий момент это единственно допустимое значение
     'disable_existing_loggers': False,  # контролирует работу (стандартной) схемы логирования Django
-    'formatters': {
+
+    # средства форматирования служат для определения точного формата вывода.
+    'formatters': {  # формат включает в себя время, уровень сообщения, и сами сообщения.
         'format_debug': {
             'format': '{asctime} {levelname} {message}',
             'style': '{',
         },
 
-        'format_warning_mail': {
+        'format_warning_mail': {  # Для сообщений WARNING и выше дополнительно добавляем pathname
             'format': '{asctime} {levelname} {message} {pathname} ',
             'style': '{',
         },
 
-        'format_error_critical': {
+        'format_error_critical': {  # для сообщений ERROR и CRITICAL добавляем стек ошибки "exc_info"
             'format': '{asctime} {levelname} {message} {pathname} {exc_info}',
             'style': '{',
         },
 
         'format_general_security_info': {
-            'format': '{asctime} {levelname} {message} {module} ',
+            # В general.log выводим INFO и выше
+            # только с указанием времени, уровня логирования, модуля, в котором возникло сообщение (module) и сообщение.
+            'format': '{asctime} {levelname} {module} {message}',
             'style': '{',
         },
 
     },
+    # Обработчики
+    # Основная задача обработчика — перенаправить сообщение (если оно не игнорируется) в нужный ресурс.
+    # Данные могут записываться в файл, отправляться по почте или другой ресурс в сети
+    'handlers': {
+        'console_debug': {
+            'level': 'DEBUG',   # В консоль должны выводиться все сообщения уровня DEBUG и выше
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'format_debug',
+        },
+
+        'console_warning': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'format_warning_mail',
+        },
+        #  В файл general.log должны выводиться сообщения уровня INFO
+        'console_gen_sec_info': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'formatter': 'format_general_security_info',
+            'filename': 'general.log',
+        },
+
+        'console_error_critical': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'format_error_critical',
+        },
+
+        'errors_file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'format_error_critical',
+            'filename': 'errors.log',
+        },
+
+        'security_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'format_general_security_info',
+            'filename': 'security.log',
+        },
+
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'format_warning_mail',
+        },
+    },
+    # фильтры это дополнительный механизм перенаправления сообщений от регистраторов в обработчики, позволяющий,
+    # например, отправлять ошибки только из определенного источника или согласно каким-то другим критериям,
+    # которые можно определять самостоятельно.
+    'filters': {
+        'require_debug_false': {  # фильтр, который пропускает записи только в случае, когда DEBUG = False.
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {  # фильтр, который пропускает записи только в случае, когда DEBUG = True.
+            '()': 'django.utils.log.RequireDebugTrue'
+        },
+    },
+
+    """ Регистраторы или логгеры, образуют своеобразную иерархию.
+    Например, если уровень логирования регистратора определен как INFO, то в него будут попадать сообщения
+    уровня INFO, а также WARNING, ERROR и CRITICAL. А если регистратор определен с уровнем ERROR,
+    то в него попадут только сообщения ERROR и CRITICAL. Если уровень логирования сообщения «ниже» уровня логирования
+    регистратора, то он их будет игнорировать. Однако, если регистратор не игнорирует данное сообщение,
+    то оно передаётся обработчику handler."""
+    'loggers': {
+        'django': {
+            'handlers': ['console_debug', 'console_warning', 'console_gen_sec_info', 'console_error_critical'],
+            'level': 'DEBUG',
+        },
+
+        'django.request': {
+            # Логгер, принимающий все сообщения, связанные с ошибками обработки запроса.
+
+            'handlers': ['errors_file', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+
+        'django.server': {
+            # При попытке запуска приложения с помощью runserver, логгер регистрирует сообщения
+
+            'handlers': ['errors_file', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+
+        'django.template': {
+            # Логгер, взаимодействующий с системой шаблонов Django.
+
+            'handlers': ['errors_file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+
+        'django.db.backends': {
+            # Сообщения, попадающие в этот логгер, относятся к взаимодействию приложения с базой данных.
+            # Ошибки в моделях, взаимодействии с ними, миграциях и т. д.
+
+            'handlers': ['errors_file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+
+        'django.security': {
+            # Определяет класс логгеров, регистрирующих события нарушения безопасности.
+
+            'handlers': ['security_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    }
 }
+
