@@ -248,10 +248,10 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'format_warning_mail',
         },
-        #  В файл general.log должны выводиться сообщения уровня INFO
+
         'console_gen_sec_info': {
-            'level': 'INFO',
-            'filters': ['require_debug_false'],
+            'level': 'INFO',  # В файл general.log должны выводиться сообщения уровня INFO и выше
+            'filters': ['require_debug_false'],  # в файл 'general.log' отправляются — только при DEBUG = False.
             'class': 'logging.FileHandler',
             'formatter': 'format_general_security_info',
             'filename': 'general.log',
@@ -259,13 +259,13 @@ LOGGING = {
 
         'console_error_critical': {
             'level': 'ERROR',
-            'filters': ['require_debug_true'],
+            'filters': ['require_debug_true'],  # в консоль сообщения отправляются только при DEBUG = True
             'class': 'logging.StreamHandler',
             'formatter': 'format_error_critical',
         },
 
         'errors_file': {
-            'level': 'ERROR',
+            'level': 'ERROR',  # В файл errors.log должны выводиться сообщения только уровня ERROR и CRITICAL.
             'class': 'logging.FileHandler',
             'formatter': 'format_error_critical',
             'filename': 'errors.log',
@@ -279,10 +279,10 @@ LOGGING = {
         },
 
         'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
+            'level': 'ERROR',  # На почту должны отправляться сообщения уровней ERROR и выше
+            'filters': ['require_debug_false'],  # на почту сообщения отправляются — только при DEBUG = False.
             'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'format_warning_mail',
+            'formatter': 'format_warning_mail',  # по формату, как в errors.log, но без стека ошибок
         },
     },
     # фильтры это дополнительный механизм перенаправления сообщений от регистраторов в обработчики, позволяющий,
@@ -303,6 +303,8 @@ LOGGING = {
     то в него попадут только сообщения ERROR и CRITICAL. Если уровень логирования сообщения «ниже» уровня логирования
     регистратора, то он их будет игнорировать. Однако, если регистратор не игнорирует данное сообщение,
     то оно передаётся обработчику handler."""
+    
+    
     'loggers': {
         'django': {
             'handlers': ['console_debug', 'console_warning', 'console_gen_sec_info', 'console_error_critical'],

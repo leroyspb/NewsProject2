@@ -16,10 +16,25 @@ from django.http import HttpResponse
 from django.views import View
 import logging
 
+
+class Index(View):
+    def get(self, request):
+        # . Translators: This message appears on the home page only
+        models = Post.objects.all()
+
+        context = {
+            'models': models,
+            # 'current_time': timezone.localtime(timezone.now()),
+            # 'timezones': pytz.common_timezones  # добавляем в контекст все доступные часовые пояса
+        }
+
+        return HttpResponse(render(request, 'default.html', context))
+
+
 logger = logging.getLogger(__name__)
 
 
-def index(request):  # при переходе по определённому адресу в urls
+def index(request):  # при переходе по определённому урлу
     logger.info('INFO')
     news = Post.objects.all()
     return render(request, 'default.html', context={'news': news})
