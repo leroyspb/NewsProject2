@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-import logging
-
-logger = logging.getLogger(__name__)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -301,7 +298,7 @@ LOGGING = {
     # Основная задача обработчика — перенаправить сообщение (если оно не игнорируется) в нужный ресурс.
     # Данные могут записываться в файл, отправляться по почте или другой ресурс в сети
     'handlers': {
-        'console_debug': {  # 'DEBUG' по заданию, INFO можно поставить для проверки,
+        'console_debug': {
             'level': 'DEBUG',   # В консоль должны выводиться все сообщения уровня DEBUG и выше
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',

@@ -1,0 +1,5 @@
+2024-07-08 21:27:42,053 - INFO - "GET / HTTP/1.1" 200 8980 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-08 21:27:43,752 - WARNING - Not Found: /news/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - None
+2024-07-08 21:27:43,753 - WARNING - "GET /news/ HTTP/1.1" 404 4671 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-08 21:27:44,916 - WARNING - Not Found: /news/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - None
+2024-07-08 21:27:44,916 - WARNING - "GET /news/ HTTP/1.1" 404 4671 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
