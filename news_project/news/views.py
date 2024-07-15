@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import OuterRef, Exists
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.decorators.csrf import csrf_protect
 from django.core.cache import cache  # импортируем наш кэш
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -10,6 +12,16 @@ from .tasks import send_email_new_post
 from .filters import NewsFilter
 from .forms import NewsForm
 from .models import Post, Subscription, Category
+
+from django.db import models
+from django.utils.translation import gettext as _  # импортируем функцию для перевода
+
+
+class Index(View):
+    def get(self, request):
+        string = _('Hello world')
+
+        return HttpResponse(string)
 
 
 class PostList(ListView):

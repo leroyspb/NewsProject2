@@ -4,11 +4,13 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.urls import reverse
 from django.core.cache import cache
+from django.utils.translation import gettext as _, pgettext_lazy
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    rating = models.IntegerField(default=0)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_('Введите имя автора'))  # добавим переводящийся текст подсказку к полю))
+    rating = models.IntegerField(default=0, help_text=_('Здесь укажите рейтинг'))
+    verbose_name = pgettext_lazy('help text for MyModel model', 'This is the help text'),
 
     def __str__(self):
         return self.user.username
@@ -29,8 +31,9 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=128, unique=True, help_text=_('Category name'))  # добавим переводящийся текст подсказку к полю)
     subscribers = models.ManyToManyField(User, related_name='categories', through='Subscription')
+    verbose_name = pgettext_lazy('help text for MyModel model', 'This is the help text'),
 
     def __str__(self):
         return f'{self.name}'
@@ -54,7 +57,7 @@ class Post(models.Model):
     category = models.ManyToManyField(Category, through='PostCategory', verbose_name='Категория публикации')
     title = models.CharField(max_length=128)
     text = models.TextField()
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0, help_text=_('Здесь указывается рейтинг'))
     related_name = 'posts',
 
     def like(self):
@@ -87,6 +90,7 @@ class PostCategory(models.Model):
 
     def __str__(self):
         return f'{self.post}'
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

@@ -14,7 +14,7 @@ urlpatterns = [
    path('', PostList.as_view()),
    # pk — это первичный ключ товара, который будет выводиться у нас в шаблон
    # int — указывает на то, что принимаются только целочисленные значения
-   path('', cache_page(60*1)(PostList.as_view()), name='news'),
+   path('news/', cache_page(60*1)(PostList.as_view()), name='news'),
    path('news/<int:pk>/', cache_page(300*1)(PostDetail.as_view()), name='post'),
    path('news/search/', SearchNews.as_view(), name='search'),
    path('news/create/', PostCreate.as_view(), name='post_create'),
@@ -27,4 +27,5 @@ urlpatterns = [
    path('categories/<int:pk>', CategoryListView.as_view(), name='category_list'),
    # path('tasks/', tasks.MyTasks.as_view(), name='tasks'),
    path('', weekly_email_task, name='weekly_email_task'),
+   path('hello/', Index.as_view(), name='index')
 ]
