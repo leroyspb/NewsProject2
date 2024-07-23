@@ -9,13 +9,14 @@
 {% block title %}
 posts
 {% endblock title %}
+{% load i18n %}
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
-{% load cache %} <!-- Загружаем кэширование -->
-{% cache 60 all_news %}
-    <h1>Все новости</h1>
-{% endcache %}
+<!--{% load cache %} &lt;!&ndash; Загружаем кэширование &ndash;&gt;-->
+<!--{% cache 60 all_news %}-->
+    <h1>{% trans 'All news' %}</h1>
+<!--{% endcache %}-->
 <!--   {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}-->
 <!--   <form action="" method="get">-->
 <!--       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}-->
@@ -27,19 +28,19 @@ posts
     <hr>
     {# Теперь будем проверять не request.user.is_authenticated, а конкретные права #}
     {% if perms.simpleapp.add_product %}
-    <a href="{% url 'post_create' %}">Добавить публикацию</a>
+    <a href="{% url 'post_create' %}">{% trans 'Add a publication' %}</a>
     {% endif %}
     {% if posts %}
 
-<h2> Количество постов {{ posts|length }}</h2>
-{% cache 60 sidebar_news %} <!-- Кэшируем отдельный блок на 60 секунд -->
+<h2> {% trans 'Number of posts' %} {{ posts|length }}</h2>
+<!--{% cache 60 sidebar_news %} &lt;!&ndash; Кэшируем отдельный блок на 60 секунд &ndash;&gt;-->
         <table width="100%" style="margin-top: 35px">
             <tr>
-                <td><u> Заголовок </u></td>
-                <td><u> Дата публикации </u></td>
-                <td><u>  Описание </u></td>
+                <td><u>{% trans 'Headline' %} </u></td>
+                <td><u>{% trans 'Publication date' %} </u></td>
+                <td><u>{% trans 'Description' %} </u></td>
             </tr>
-                {% endcache %}
+<!--                {% endcache %}-->
             {% for post in posts %}
             <tr>
                 <td>{{ post.title|truncatewords:6|censor }}</td>
@@ -49,18 +50,18 @@ posts
                 {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}
                 {% if perms.news.change_post %}
                 {% if post.categoryType == 'NW' %}
-                    <td><a href="{% url 'news_edit' post.id %}">Обновить</a></td>
+                    <td><a href="{% url 'news_edit' post.id %}">{% trans 'Update' %}</a></td>
 
                 {% else %}
-                    <td><a href="{% url 'articles_edit' post.id %}">Обновить</a></td>
+                    <td><a href="{% url 'articles_edit' post.id %}">{% trans 'Update' %}</a></td>
 
                 {% endif %}
                 {% endif %}
                 {% if perms.news.delete_post %}
                 {% if post.categoryType == 'NW' %}
-                    <td><a href="{% url 'news_delete' post.id %}">Удалить</a></td>
+                    <td><a href="{% url 'news_delete' post.id %}">{% trans 'Delete' %}</a></td>
                 {% else %}
-                    <td><a href="{% url 'article_delete' post.id %}">Удалить</a></td>
+                    <td><a href="{% url 'article_delete' post.id %}">{% trans 'Delete' %}</a></td>
 
 <!--                <td>-->
 <!--                    {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}-->
@@ -78,7 +79,7 @@ posts
         </table>
         </table>
     {% else %}
-        <h2> Новостей нет! </h2>
+        <h2>{% trans 'No news!' %} </h2>
     {% endif %}
 
  {# Добавляем пагинацию на страницу #}

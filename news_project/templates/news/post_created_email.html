@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load i18n %}
     <meta charset="UTF-8">
-    <title>Уведомление</title>
+    <title>{% trans 'Notification' %}</title>
 </head>
 <body>
-<h2> Здравствуйте! Новая <a href="{{ link }}"> статья </a>в вашем любимом разделе!</h2>
+<h2>{% trans 'HELLO NEW' %} <a href="{{ link }}"> {% trans 'article' %} </a> {% trans 'In your favorite section!' %}</h2>
 <p>{{ text }}</p>
 </body>
 </html>

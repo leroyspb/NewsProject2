@@ -9,10 +9,10 @@
 {% block title %}
 posts
 {% endblock title %}
-
+{% load i18n %}
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
-    <h1>Все новости</h1>
+    <h1>{% trans 'All news' %}</h1>
     {% if is_not_subscriber %}
         <p class="text-center"><a href="{}" class="btn btn-secondary btn-sm">Подписаться</a> </p>
     {% endif %}
@@ -39,12 +39,12 @@ posts
     {% endif %}
     {% if posts %}
 
-<h2> Количество постов {{ posts|length }}</h2>
+<h2>{% trans Number of posts %} {{ posts|length }}</h2>
         <table width="100%" style="margin-top: 35px">
             <tr>
-                <td><u> Заголовок </u></td>
-                <td><u> Дата публикации </u></td>
-                <td><u>  Описание </u></td>
+                <td><u>{% trans 'Headline' %} </u></td>
+                <td><u>{% trans 'Publication date' %} </u></td>
+                <td><u> {% trans 'Description' %} </u></td>
             </tr>
             {% for post in posts %}
             <tr>
@@ -82,7 +82,7 @@ posts
         </table>
         </table>
     {% else %}
-        <h2> Новостей нет! </h2>
+        <h2>{% trans No posts! %}</h2>
     {% endif %}
  {# Добавляем пагинацию на страницу #}
 

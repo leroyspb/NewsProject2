@@ -1,0 +1,214 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-23 21:44+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\fpages\admin.py:11
+msgid "Advanced options"
+msgstr "Расширенные настройки"
+
+#: .\news\models.py:11
+msgid "enter the author name"
+msgstr "введите имя автора"
+
+#: .\news\models.py:12
+msgid "enter your rating here"
+msgstr "введите рейтинг здесь"
+
+#: .\news\models.py:33
+msgid "Category name"
+msgstr "Имя категории"
+
+#: .\news\models.py:45
+msgid "author post"
+msgstr "автор поста"
+
+#: .\news\models.py:54
+msgid "date published"
+msgstr "дата публикации"
+
+#: .\news\models.py:55
+msgid "category post"
+msgstr "имя категории"
+
+#: .\news\models.py:56
+msgid "title"
+msgstr "заголовок"
+
+#: .\news\models.py:57
+msgid "text post"
+msgstr "текст поста"
+
+#: .\news\models.py:58
+msgid "The rating is indicated here"
+msgstr "Здесь указан рейтинг"
+
+#: .\news\views.py:22
+msgid "Hello world"
+msgstr "Привет мир"
+
+#: .\templates\403.html:7
+msgid "Error 403"
+msgstr "Ошибка 403"
+
+#: .\templates\403.html:10
+msgid "It seems you do not have access to this page..."
+msgstr "Кажется, у вас нет доступа к этой странице..."
+
+#: .\templates\account\email\base_message.txt:1
+#, python-format
+msgid "Hello from %(site_name)s!"
+msgstr "Привет из %(site_name)s!"
+
+#: .\templates\account\email\base_message.txt:5
+#, python-format
+msgid ""
+"Thank you for being with %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"Спасибо, что вы с %(site_name)s!\n"
+"%(site_domain)s"
+
+#: .\templates\account\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"Вы получили это сообщение, потому что пользователь %(user_display)s указал "
+"этот email при регистрации на сайте %(site_domain)s.\n"
+"\n"
+"Для подтверждения регистрации пройдите по ссылке %(activate_url)s\n"
+"\n"
+"Хорошего дня!\n"
+msgstr ""
+
+#: .\templates\article\article_delete.html:4
+msgid "Delete a post"
+msgstr "Удалить новость"
+
+#: .\templates\article\article_delete.html:8 .\templates\news.html:62
+#: .\templates\news.html:64 .\templates\news\news_delete.html:9
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\templates\article\articles_create.html:5
+msgid "Create article"
+msgstr "Создать статью"
+
+#: .\templates\article\articles_create.html:10
+msgid "Save article"
+msgstr "Сохранить статью"
+
+#: .\templates\flatpages\default.html:9
+msgid "NEWS PORTAL D3"
+msgstr "Новостной портал Д3"
+
+#: .\templates\flatpages\default.html:15 .\templates\flatpages\default.html:36
+msgid "Check out my new cool translation"
+msgstr "Оцени мой классный перевод"
+
+#: .\templates\news.html:18 .\templates\news\category_list.html:15
+msgid "All news"
+msgstr "Все новости"
+
+#: .\templates\news.html:31
+msgid "Add a publication"
+msgstr "Добавить публикацию"
+
+#: .\templates\news.html:35
+msgid "Number of posts"
+msgstr "Количество новостей"
+
+#: .\templates\news.html:39 .\templates\news\category_list.html:45
+#: .\templates\post.html:9 .\templates\search.html:24
+msgid "Headline"
+msgstr "Заголовок"
+
+#: .\templates\news.html:40 .\templates\news\category_list.html:46
+#: .\templates\post.html:10 .\templates\search.html:25
+msgid "Publication date"
+msgstr "Дата публикации"
+
+#: .\templates\news.html:41 .\templates\news\category_list.html:47
+#: .\templates\post.html:11 .\templates\search.html:26
+msgid "Description"
+msgstr "Описание"
+
+#: .\templates\news.html:53 .\templates\news.html:56
+msgid "Update"
+msgstr "Обновить"
+
+#: .\templates\news.html:82
+msgid "No news!"
+msgstr "Все новости"
+
+#: .\templates\news\daily_post.html:6
+#: .\templates\news\post_created_email.html:6
+msgid "Notification"
+msgstr "Уведомление"
+
+#: .\templates\news\daily_post.html:9
+msgid "Hello! New articles for the last week"
+msgstr "Привет! Новые статья за последнюю неделю"
+
+#: .\templates\news\news_delete.html:5
+msgid "Delete news"
+msgstr "Удалить новости"
+
+#: .\templates\news\post_create.html:5
+msgid "Create"
+msgstr "Создать"
+
+#: .\templates\news\post_create.html:10
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\templates\news\post_created_email.html:9
+msgid "HELLO NEW"
+msgstr "Привет новая(ые)"
+
+#: .\templates\news\post_created_email.html:9
+msgid "article"
+msgstr "статья"
+
+#: .\templates\news\post_created_email.html:9
+msgid "In your favorite section!"
+msgstr "В вашем любимом разделе"
+
+#: .\templates\post.html:22
+msgid "No publications!"
+msgstr "Нет публикаций!"
+
+#: .\templates\search.html:8
+msgid "News Search"
+msgstr "Поиск новостей"
+
+#: .\templates\search.html:18
+msgid "Find"
+msgstr "Найти"
+
+#: .\templates\search.html:38
+msgid "Select your search options!"
+msgstr "Выберите критерии поиска"
+
+#~ msgctxt "help text for MyModel model"
+#~ msgid "This is the help text"
+#~ msgstr "Это вспомогательный текст"
+
+#~ msgid "Здесь указывается рейтинг"
+#~ msgstr "рейтинг"

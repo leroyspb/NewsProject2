@@ -1,15 +1,16 @@
 {% extends 'flatpages/default.html' %}
-{% load cache %} <!-- Загружаем кэширование -->
+{% load i18n %}
+<!--{% load cache %} &lt;!&ndash; Загружаем кэширование &ndash;&gt;-->
 {% block content %}
 {% if post %}
-{% cache 300 sidebar %} <!-- Кэшируем отдельный блок на 300 секунд -->
+<!--{% cache 300 sidebar %} &lt;!&ndash; Кэшируем отдельный блок на 300 секунд &ndash;&gt;-->
 <table width="100%" style="margin-top: 35px">
     <tr>
-        <td><u>Заголовок</u></td>
-        <td><u>Дата публикации</u></td>
-        <td><u>Содержание</u></td>
+        <td><u>{% trans 'Headline' %}</u></td>
+        <td><u>{% trans 'Publication date' %}</u></td>
+        <td><u>{% trans 'Description' %}</u></td>
     </tr>
-    {% endcache %}
+<!--    {% endcache %}-->
     <tr>
         <td>{{ post.title }}</td>
         <td>{{ post.creation_time_in|date:'d M Y' }}</td>
@@ -18,7 +19,7 @@
 </table>
 
 {% else %}
-<h3>Публикаций нет!</h3>
+<h3>{% trans 'No publications!' %}</h3>
 {% endif %}
 {% endblock content %}
 

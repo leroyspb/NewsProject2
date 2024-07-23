@@ -4,13 +4,12 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.urls import reverse
 from django.core.cache import cache
-from django.utils.translation import gettext as _, pgettext_lazy
+from django.utils.translation import gettext_lazy as gettext
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_('Введите имя автора'))  # добавим переводящийся текст подсказку к полю))
-    rating = models.IntegerField(default=0, help_text=_('Здесь укажите рейтинг'))
-    verbose_name = pgettext_lazy('help text for MyModel model', 'This is the help text'),
+    user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=gettext('enter the author name'))  # добавим переводящийся текст подсказку к полю))
+    rating = models.IntegerField(default=0, help_text=gettext('enter your rating here'))
 
     def __str__(self):
         return self.user.username
@@ -31,9 +30,8 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True, help_text=_('Category name'))  # добавим переводящийся текст подсказку к полю)
+    name = models.CharField(max_length=128, unique=True, help_text=gettext('Category name'))  # добавим переводящийся текст подсказку к полю)
     subscribers = models.ManyToManyField(User, related_name='categories', through='Subscription')
-    verbose_name = pgettext_lazy('help text for MyModel model', 'This is the help text'),
 
     def __str__(self):
         return f'{self.name}'
@@ -44,7 +42,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=gettext('author post'))
 
     ARTICLE = 'AR'
     NEWS = 'NW'
@@ -53,11 +51,11 @@ class Post(models.Model):
         (NEWS, 'Новости'))
 
     categoryType = models.CharField(max_length=2, choices=CATEGORY_PAPER, default=ARTICLE)
-    creation_time_in = models.DateTimeField(auto_now_add=True)
-    category = models.ManyToManyField(Category, through='PostCategory', verbose_name='Категория публикации')
-    title = models.CharField(max_length=128)
-    text = models.TextField()
-    rating = models.IntegerField(default=0, help_text=_('Здесь указывается рейтинг'))
+    creation_time_in = models.DateTimeField(auto_now_add=True, verbose_name=gettext('date published'))
+    category = models.ManyToManyField(Category, through='PostCategory', verbose_name=gettext('category post'))
+    title = models.CharField(max_length=128, verbose_name=gettext('title'))
+    text = models.TextField(verbose_name=gettext('text post'))
+    rating = models.IntegerField(default=0, help_text=gettext('The rating is indicated here'))
     related_name = 'posts',
 
     def like(self):
