@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import OuterRef, Exists
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.decorators.csrf import csrf_protect
@@ -12,16 +12,32 @@ from .tasks import send_email_new_post
 from .filters import NewsFilter
 from .forms import NewsForm
 from .models import Post, Subscription, Category
-
+from django.utils import timezone
 from django.db import models
 from django.utils.translation import gettext as _  # импортируем функцию для перевода
+import pytz  # импортируем стандартный модуль для работы с часовыми поясами
+
+from .translation import PostTranslationOptions, CategoryTranslationOptions
 
 
 class Index(View):
     def get(self, request):
-        string = _('Hello world')
 
-        return HttpResponse(string)
+        models = PostTranslationOptions, CategoryTranslationOptions
+
+        context = {
+            'models': models,
+            'current_time': timezone.localtime(timezone.now()),
+            'timezones': pytz.common_timezones  # добавляем в контекст все доступные часовые пояса
+        }
+
+        return HttpResponse(render(request, 'index.html', context))
+        # по пост-запросу будем добавлять в сессию часовой пояс,
+        # который и будет обрабатываться написанным нами ранее middleware
+
+    # def post(self, request):
+    #     request.session['django_timezone'] = request.POST['timezone']
+    #     return redirect('/')
 
 
 class PostList(ListView):

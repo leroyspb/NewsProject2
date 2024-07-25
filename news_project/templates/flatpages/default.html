@@ -11,8 +11,8 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         {% load static %}
-<!--        {{ string }} &lt;!&ndash; Это уже знакомая нам переменная, просто засунули её в шаблон &ndash;&gt;-->
-<!--        {% trans "Check out my new cool translation" %}! &lt;!&ndash; Переводим строку &ndash;&gt;-->
+        {{ string }} <!-- Это уже знакомая нам переменная, просто засунули её в шаблон -->
+        {% trans "Check out my new cool translation" %}! <!-- Переводим строку -->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
@@ -22,7 +22,7 @@
         <select name="language" id="">
             {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
             {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
-            {% get_current_language as LANGUAGE_CODE %}
+<!--            {% get_current_language as LANGUAGE_CODE %}-->
             {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
                 <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
                     {{ language.name_local }} - {{ language.code }}
@@ -32,9 +32,34 @@
         <input type="submit" value="set">
     </form>
 
-    {{ string }} <!-- Это уже знакомая нам переменная, просто засунули её в шаблон -->
-    {% trans "Check out my new cool translation" %}! <!-- Переводим строку -->
-        <!-- Responsive navbar-->
+    {% get_current_timezone as TIME_ZONE %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="timezone">Time zone:</label>
+        <select name="timezone">
+            {% for tz in timezones %}
+            <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected{% endif %}>{{ tz }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Set">
+    </form>
+
+    {{ TIME_ZONE }}
+    {{ current_time|timezone:TIME_ZONE }} <!-- Отображаем время в выбранном часовом поясе  -->
+
+    {% for model in models %}
+    <div class="model-class">
+        {{ model.name }}
+    </div>
+    {% endfor %}
+
+
+    {% for model in models %}
+    <div class="model-class">
+        {{ model.name }}
+    </div>
+    {% endfor %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
    <div class="container">
 <!--       <a class="navbar-brand" href="/general/">Важная информация</a>-->

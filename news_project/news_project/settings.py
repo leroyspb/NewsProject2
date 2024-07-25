@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',  # обязательно пишем его перед админом
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.yandex',
     'django_apscheduler',
 
-
 ]
 
 
@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.locale.LocaleMiddleware'
+    'news.middlewares.TimezoneMiddleware',
 
 
     # 'django.middleware.cache.UpdateCacheMiddleware',
@@ -134,8 +135,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 LANGUAGES = [
-    ('ru', 'Russian'),
-    ('en', 'English')
+    ('en-us', 'English'),
+    ('ru', 'Russian')
+
 ]
 
 TIME_ZONE = 'Europe/Moscow'

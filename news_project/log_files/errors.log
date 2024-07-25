@@ -788,3 +788,1002 @@ Traceback (most recent call last):
     raise TemplateSyntaxError(
 django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ''' from 'Find''
 2024-07-23 21:41:09,219 - ERROR - "GET /news/search/?title__icontains=%D0%A2%D1%80%D0%B5%D1%82%D1%8C%D1%8F%D0%BA%D0%BE%D0%B2%D0%BA%D0%B5&added_after= HTTP/1.1" 500 208453 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-24 07:09:03,022 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en_us'), <traceback object at 0x00000206F8CEFC00>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: news_category.name_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1059, in render
+    output = self.filter_expression.resolve(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 710, in resolve
+    obj = self.var.resolve(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 842, in resolve
+    value = self._resolve_lookup(context)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 909, in _resolve_lookup
+    current = current()
+              ^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 87, in as_p
+    return self.render(self.template_name_p)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 55, in render
+    return mark_safe(renderer.render(template, context))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\renderers.py", line 29, in render
+    return template.render(context, request=request).strip()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1065, in render
+    return render_value_in_context(output, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1042, in render_value_in_context
+    value = str(value)
+            ^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 79, in __str__
+    return self.as_widget()
+           ^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\boundfield.py", line 108, in as_widget
+    return widget.render(
+           ^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 278, in render
+    context = self.get_context(name, value, attrs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 764, in get_context
+    context = super().get_context(name, value, attrs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 715, in get_context
+    context["widget"]["optgroups"] = self.optgroups(
+                                     ^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 655, in optgroups
+    for index, (option_value, option_label) in enumerate(self.choices):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django_filters\fields.py", line 256, in __iter__
+    yield from iterable
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\models.py", line 1422, in __iter__
+    for obj in queryset:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 518, in _iterator
+    yield from iterable
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: news_category.name_en_us
+2024-07-24 07:09:03,067 - ERROR - "GET / HTTP/1.1" 500 306304 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-24 07:09:57,538 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en_us'), <traceback object at 0x000002DF77DECA80>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: news_category.name_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1059, in render
+    output = self.filter_expression.resolve(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 710, in resolve
+    obj = self.var.resolve(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 842, in resolve
+    value = self._resolve_lookup(context)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 909, in _resolve_lookup
+    current = current()
+              ^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 87, in as_p
+    return self.render(self.template_name_p)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 55, in render
+    return mark_safe(renderer.render(template, context))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\renderers.py", line 29, in render
+    return template.render(context, request=request).strip()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1065, in render
+    return render_value_in_context(output, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1042, in render_value_in_context
+    value = str(value)
+            ^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 79, in __str__
+    return self.as_widget()
+           ^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\boundfield.py", line 108, in as_widget
+    return widget.render(
+           ^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 278, in render
+    context = self.get_context(name, value, attrs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 764, in get_context
+    context = super().get_context(name, value, attrs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 715, in get_context
+    context["widget"]["optgroups"] = self.optgroups(
+                                     ^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 655, in optgroups
+    for index, (option_value, option_label) in enumerate(self.choices):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django_filters\fields.py", line 256, in __iter__
+    yield from iterable
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\models.py", line 1422, in __iter__
+    for obj in queryset:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 518, in _iterator
+    yield from iterable
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: news_category.name_en_us
+2024-07-24 07:09:57,570 - ERROR - "GET / HTTP/1.1" 500 306304 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-24 07:10:59,635 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_category.name_en_us'), <traceback object at 0x0000023A2F2EF900>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: news_category.name_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1059, in render
+    output = self.filter_expression.resolve(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 710, in resolve
+    obj = self.var.resolve(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 842, in resolve
+    value = self._resolve_lookup(context)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 909, in _resolve_lookup
+    current = current()
+              ^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 87, in as_p
+    return self.render(self.template_name_p)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 55, in render
+    return mark_safe(renderer.render(template, context))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\renderers.py", line 29, in render
+    return template.render(context, request=request).strip()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1065, in render
+    return render_value_in_context(output, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1042, in render_value_in_context
+    value = str(value)
+            ^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\utils.py", line 79, in __str__
+    return self.as_widget()
+           ^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\boundfield.py", line 108, in as_widget
+    return widget.render(
+           ^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 278, in render
+    context = self.get_context(name, value, attrs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 764, in get_context
+    context = super().get_context(name, value, attrs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 715, in get_context
+    context["widget"]["optgroups"] = self.optgroups(
+                                     ^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\widgets.py", line 655, in optgroups
+    for index, (option_value, option_label) in enumerate(self.choices):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django_filters\fields.py", line 256, in __iter__
+    yield from iterable
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\forms\models.py", line 1422, in __iter__
+    for obj in queryset:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 518, in _iterator
+    yield from iterable
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: news_category.name_en_us
+2024-07-24 07:10:59,664 - ERROR - "GET / HTTP/1.1" 500 306304 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-24 07:13:16,748 - ERROR - Internal Server Error: /admin/news/comment/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("'Comment' object has no attribute 'comment_post'"), <traceback object at 0x0000023ABD92AA40>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\options.py", line 681, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'action_checkbox'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\utils.py", line 289, in lookup_field
+    f = _get_non_gfk_field(opts, name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\utils.py", line 322, in _get_non_gfk_field
+    field = opts.get_field(name)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\options.py", line 683, in get_field
+    raise FieldDoesNotExist(
+django.core.exceptions.FieldDoesNotExist: Comment has no field named 'action_checkbox'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\templatetags\base.py", line 45, in render
+    return super().render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\library.py", line 258, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 345, in result_list
+    "results": list(results(cl)),
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 321, in results
+    yield ResultList(None, items_for_result(cl, res, None))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 312, in __init__
+    super().__init__(*items)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 217, in items_for_result
+    f, attr, value = lookup_field(field_name, result, cl.model_admin)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\utils.py", line 298, in lookup_field
+    value = attr(obj)
+            ^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\contrib\admin\options.py", line 999, in action_checkbox
+    "aria-label": format_html(_("Select this object for an action - {}"), obj),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\html.py", line 135, in format_html
+    return mark_safe(format_string.format(*args_safe, **kwargs_safe))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\html.py", line 117, in conditional_escape
+    return escape(text)
+           ^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\functional.py", line 231, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\html.py", line 50, in escape
+    return SafeString(html.escape(str(text)))
+                                  ^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\models.py", line 109, in __str__
+    return self.comment_post.author.user.username + '---' + str(self.id)
+           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Comment' object has no attribute 'comment_post'
+2024-07-24 07:13:16,771 - ERROR - "GET /admin/news/comment/ HTTP/1.1" 500 417750 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-25 06:20:48,003 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x000001C9C0713380>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\defaulttags.py", line 325, in render
+    if match:
+       ^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 414, in __bool__
+    self._fetch_all()
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2024-07-25 06:20:48,117 - ERROR - "GET / HTTP/1.1" 500 207587 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-25 06:22:13,421 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.title_en_us'), <traceback object at 0x00000193D15D91C0>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: news_post.title_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\defaulttags.py", line 325, in render
+    if match:
+       ^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 414, in __bool__
+    self._fetch_all()
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: news_post.title_en_us
+2024-07-25 06:22:13,442 - ERROR - "GET / HTTP/1.1" 500 207587 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-25 06:26:50,116 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.db.utils.OperationalError'>, OperationalError('no such column: news_post.text_en_us'), <traceback object at 0x0000017BE764D880>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: news_post.text_en_us
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\defaulttags.py", line 325, in render
+    if match:
+       ^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 414, in __bool__
+    self._fetch_all()
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: news_post.text_en_us
+2024-07-25 06:26:50,136 - ERROR - "GET / HTTP/1.1" 500 206614 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-25 06:36:33,318 - ERROR - Internal Server Error: /hello/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x000001FAC14E9140>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 29, in get
+    return HttpResponse(render(request, 'index.html', context))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2024-07-25 06:36:33,324 - ERROR - "GET /hello/ HTTP/1.1" 500 112095 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-25 07:05:15,709 - ERROR - Internal Server Error: /hello/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x000001DE8D81C600>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 29, in get
+    return HttpResponse(render(request, 'index.html', context))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2024-07-25 07:05:15,716 - ERROR - "GET /hello/ HTTP/1.1" 500 112236 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-25 07:06:16,150 - ERROR - Internal Server Error: /hello/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x000001DE8EC31700>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 29, in get
+    return HttpResponse(render(request, 'index.html', context))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2024-07-25 07:06:16,155 - ERROR - "GET /hello/ HTTP/1.1" 500 112244 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-25 07:07:02,070 - ERROR - Internal Server Error: /hello/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('index.html'), <traceback object at 0x0000029452D44E80>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 28, in get
+    return HttpResponse(render(request, 'index.html', context))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+2024-07-25 07:07:02,076 - ERROR - "GET /hello/ HTTP/1.1" 500 112180 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None

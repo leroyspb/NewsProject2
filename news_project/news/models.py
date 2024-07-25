@@ -53,7 +53,7 @@ class Post(models.Model):
     categoryType = models.CharField(max_length=2, choices=CATEGORY_PAPER, default=ARTICLE)
     creation_time_in = models.DateTimeField(auto_now_add=True, verbose_name=gettext('date published'))
     category = models.ManyToManyField(Category, through='PostCategory', verbose_name=gettext('category post'))
-    title = models.CharField(max_length=128, verbose_name=gettext('title'))
+    title = models.CharField(max_length=128, verbose_name=gettext('title post'))
     text = models.TextField(verbose_name=gettext('text post'))
     rating = models.IntegerField(default=0, help_text=gettext('The rating is indicated here'))
     related_name = 'posts',
