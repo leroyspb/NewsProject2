@@ -65,8 +65,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    'django.middleware.locale.LocaleMiddleware'
-    'news.middlewares.TimezoneMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'news_project.middlewares.TimezoneMiddleware',
 
 
     # 'django.middleware.cache.UpdateCacheMiddleware',

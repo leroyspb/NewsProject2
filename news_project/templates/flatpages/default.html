@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 {% load i18n %}
+{% load tz %} <!-- не забываем загрузить тег для работы с часовыми поясами -->
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>{% trans 'NEWS PORTAL D3' %} </title>
-        <!-- Favicon-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <!-- Core theme CSS (includes Bootstrap)-->
+        <title>{% trans 'NEWS PORTAL D3' %} </title>
+
+
+        <!-- Если сейчас больше чем 19 или же меньше 7, то выводим тёмную тему, иначе выводим светлую -->
+        <style>
+        body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
+        </style>
+    </head>
+    <body>
         {% load static %}
         {{ string }} <!-- Это уже знакомая нам переменная, просто засунули её в шаблон -->
         {% trans "Check out my new cool translation" %}! <!-- Переводим строку -->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body>
-    <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+
+<form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
         <input type="hidden" name="next" value="{{ redirect_to }}">
         {% get_current_language as LANGUAGE_CODE %}
         <select name="language" id="">
