@@ -3,7 +3,6 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import OuterRef, Exists
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -20,6 +19,7 @@ import pytz  # импортируем стандартный модуль для
 from django.utils import timezone
 from .translation import PostTranslationOptions, CategoryTranslationOptions
 from datetime import datetime
+from django.http.response import HttpResponse
 
 
 class Index(View):

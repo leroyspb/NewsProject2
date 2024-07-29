@@ -2,6 +2,8 @@
 <!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
 {% extends 'flatpages/default.html' %}
 {% load i18n %}
+{% load tz %} <!-- не забываем загрузить тег для работы с часовыми поясами -->
+
 {% load custom_filters %}
 
 {% load custom_tags %}
