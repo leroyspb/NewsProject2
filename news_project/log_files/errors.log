@@ -1881,3 +1881,206 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: default.html
 2024-07-26 07:01:07,357 - ERROR - "GET /hello/ HTTP/1.1" 500 114746 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-26 20:33:32,702 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("module 'datetime' has no attribute 'utcnow'"), <traceback object at 0x00000299BCD52200>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\list.py", line 174, in get
+    context = self.get_context_data()
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 62, in get_context_data
+    context['time_now'] = datetime.utcnow()
+                          ^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'utcnow'
+2024-07-26 20:33:32,719 - ERROR - "GET / HTTP/1.1" 500 90389 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-26 20:35:33,538 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("module 'datetime' has no attribute 'utcnow'"), <traceback object at 0x000001F3203AE180>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\list.py", line 174, in get
+    context = self.get_context_data()
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 62, in get_context_data
+    context['time_now'] = datetime.utcnow()
+                          ^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'utcnow'
+2024-07-26 20:35:33,543 - ERROR - "GET / HTTP/1.1" 500 90389 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-26 20:35:39,806 - ERROR - Internal Server Error: /news/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("module 'datetime' has no attribute 'utcnow'"), <traceback object at 0x000001F32151C700>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\list.py", line 174, in get
+    context = self.get_context_data()
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 62, in get_context_data
+    context['time_now'] = datetime.utcnow()
+                          ^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'utcnow'
+2024-07-26 20:35:39,811 - ERROR - "GET /news/ HTTP/1.1" 500 90449 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-26 20:36:07,003 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("module 'datetime' has no attribute 'utcnow'"), <traceback object at 0x000001621C6F1800>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\list.py", line 174, in get
+    context = self.get_context_data()
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 62, in get_context_data
+    context['time_now'] = datetime.utcnow()
+                          ^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'utcnow'
+2024-07-26 20:36:07,009 - ERROR - "GET / HTTP/1.1" 500 90389 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-26 20:37:02,186 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("module 'datetime' has no attribute 'utcnow'"), <traceback object at 0x0000020EEB6BEE80>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\list.py", line 174, in get
+    context = self.get_context_data()
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 62, in get_context_data
+    context['time_now'] = datetime.utcnow()
+                          ^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'utcnow'
+2024-07-26 20:37:02,192 - ERROR - "GET / HTTP/1.1" 500 90389 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-26 20:37:09,560 - ERROR - Internal Server Error: /news/ - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("module 'datetime' has no attribute 'utcnow'"), <traceback object at 0x0000020EEB6E0EC0>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\views\generic\list.py", line 174, in get
+    context = self.get_context_data()
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\news_project\news\views.py", line 62, in get_context_data
+    context['time_now'] = datetime.utcnow()
+                          ^^^^^^^^^^^^^^^
+AttributeError: module 'datetime' has no attribute 'utcnow'
+2024-07-26 20:37:09,565 - ERROR - "GET /news/ HTTP/1.1" 500 90449 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None
+2024-07-26 20:38:48,652 - ERROR - Internal Server Error: / - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 27: 'current_time', expected 'endblock'. Did you forget to register or load this tag?"), <traceback object at 0x0000023506013880>)
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 502, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'current_time'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 504, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\template\base.py", line 555, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 27: 'current_time', expected 'endblock'. Did you forget to register or load this tag?
+2024-07-26 20:38:48,666 - ERROR - "GET / HTTP/1.1" 500 259311 - D:\Documents\git_test_clone\NewsProject2\venv\Lib\site-packages\django\core\servers\basehttp.py - None

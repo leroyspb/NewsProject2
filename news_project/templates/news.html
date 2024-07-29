@@ -1,7 +1,7 @@
 
 <!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
 {% extends 'flatpages/default.html' %}
-
+{% load i18n %}
 {% load custom_filters %}
 
 {% load custom_tags %}
@@ -9,8 +9,9 @@
 {% block title %}
 posts
 {% endblock title %}
-{% load i18n %}
-
+    <style>
+        body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
+    </style>
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
 <!--{% load cache %} &lt;!&ndash; Загружаем кэширование &ndash;&gt;-->
@@ -24,7 +25,7 @@ posts
 <!--       {# Добавим кнопку отправки данных формы #}-->
 <!--       <input type="submit" value="Найти" />-->
 <!--   </form>-->
-    <h3>{% current_time '%b %d %Y %A' %}</h3>
+    <h3>{{ time_now|date:'M d Y' }}</h3>
     <hr>
     {# Теперь будем проверять не request.user.is_authenticated, а конкретные права #}
     {% if perms.simpleapp.add_product %}

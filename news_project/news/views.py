@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import OuterRef, Exists
@@ -17,6 +19,7 @@ from django.utils.translation import gettext as _  # импортируем фу
 import pytz  # импортируем стандартный модуль для работы с часовыми поясами
 from django.utils import timezone
 from .translation import PostTranslationOptions, CategoryTranslationOptions
+from datetime import datetime
 
 
 class Index(View):
@@ -30,13 +33,13 @@ class Index(View):
             'timezones': pytz.common_timezones  # добавляем в контекст все доступные часовые пояса
         }
 
-        return HttpResponse(render(request, 'default.html', context))
+        return HttpResponse(render(request, 'flatpages/default.html', context))
         # по пост-запросу будем добавлять в сессию часовой пояс,
         # который и будет обрабатываться написанным нами ранее middleware
 
     def post(self, request):
         request.session['django_timezone'] = request.POST['timezone']
-        return redirect('/')
+        return redirect(self.request.path)
 
 
 class PostList(ListView):
@@ -61,8 +64,15 @@ class PostList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['time_now'] = datetime.utcnow()
         context['filterset'] = self.filterset
+        context['current_time'] = timezone.localtime(timezone.now())
+        context['timezones'] = pytz.common_timezones
         return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect(self.request.path)
 
 
 class PostDetail(DetailView):
@@ -103,8 +113,15 @@ class SearchNews(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['time_now'] = datetime.utcnow()
         context['filterset'] = self.filterset
+        context['current_time'] = timezone.localtime(timezone.now())
+        context['timezones'] = pytz.common_timezones
         return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect(self.request.path)
 
 
 class PostCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
