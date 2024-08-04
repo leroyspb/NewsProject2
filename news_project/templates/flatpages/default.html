@@ -11,16 +11,16 @@
 
 
         <!-- Если сейчас больше чем 19 или же меньше 7, то выводим тёмную тему, иначе выводим светлую -->
-        <style>
-        body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
-        </style>
+
     </head>
     <body>
         {% load static %}
         {{ string }} <!-- Это уже знакомая нам переменная, просто засунули её в шаблон -->
         {% trans "Check out my new cool translation" %}! <!-- Переводим строку -->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-
+        <style>
+        body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
+        </style>
 <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
         <input type="hidden" name="next" value="{{ redirect_to }}">
         {% get_current_language as LANGUAGE_CODE %}
